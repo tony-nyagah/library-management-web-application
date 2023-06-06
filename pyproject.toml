@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "library-management-web-application"
+version = "0.1.0"
+description = "A library management application made using Flask."
+authors = ["Antony Nyagah <tony.m.nyagah@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "library_management_web_application"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.3.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+commitizen = "^3.2.2"
+pre-commit = "^3.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
