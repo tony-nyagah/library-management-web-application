@@ -1,30 +1,32 @@
-<script setup lang="ts">
-import useApi from "@/composables/useApi";
-import stockImg from "@/assets/stock_book.jpg";
-
-let book_route = "/books";
-
-const { data, error, loading, load } = useApi(book_route);
-
-load();
-</script>
-
 <template>
-    <div>
-        <h1 class="text-2xl font-bold underline text-center py-2">All Books</h1>
-        <div v-if="loading" class="text-center py-2">Loading...</div>
-        <div v-else-if="error" class="text-center py-2">An error occured: {{ error }}</div>
-        <div v-else class="container mx-auto py-10 flex flex-wrap">
-            <div v-for="book in data" :key="book.id" class="w-full md:w-1/2 lg:w-1/3 p-2">
-                <div class="card bg-base-100 shadow-xl">
-                    <figure><img :src=stockImg alt="Book" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title">{{ book.title }}</h2>
-                        <p>Author: <strong>{{ book.author }}</strong></p>
-                        <p>Available copies: {{ book.stock }}</p>
-                    </div>
+    <div class="p-6">
+        <h1 class="text-3xl mb-4">Books</h1>
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="book in data" :key="book.id" class="rounded overflow-hidden shadow-lg p-6 bg-white">
+                    <div class="font-bold text-xl mb-2">{{ book.title }}</div>
+                    <p class="text-gray-700 text-base">
+                        {{ book.author }}
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import useApi from '../composables/useApi'
+
+const { data, error, loading, load } = useApi('books')
+
+onMounted(async () => {
+    await load()
+    if (error.value) {
+        console.error(error.value)
+    }
+})
+</script>
