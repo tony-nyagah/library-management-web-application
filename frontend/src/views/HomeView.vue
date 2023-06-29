@@ -1,5 +1,7 @@
+<script setup lang="ts">
+import NavBar from "@/components/NavBar.vue";
+</script>
+
 <template>
-  <p class="btn">
-    Hello world!
-  </p>
+  <NavBar />
 </template>
