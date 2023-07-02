@@ -25,6 +25,11 @@ const router = createRouter({
       path: '/ping',
       name: 'ping',
       component: () => import('@/views/PingView.vue')
+    },
+    {
+      path: '/',
+      name: 'books',
+      component: () => import('@/views/BooksView.vue')
     }
   ]
 })

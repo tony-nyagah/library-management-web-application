@@ -21,5 +21,5 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>{{ msg }} {{ ping_message }}</h1>
+    <h1>{{ msg }} <span class="underline font-bold">{{ ping_message }}</span></h1>
 </template>
