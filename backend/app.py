@@ -28,11 +28,19 @@ def get_books():
 
 @app.route("/books", methods=["POST"])
 def add_book():
+    if request.json is None:
+        return jsonify({"error": "request body is empty"}), 400
+    title = request.json.get("title")
+    author = request.json.get("author")
+    synopsis = request.json.get("synopsis")
+    available_copies = request.json.get("available_copies")
+    if title is None or author is None or synopsis is None or available_copies is None:
+        return jsonify({"error": "missing required fields"}), 400
     new_book = Book(
-        title=request.json["title"],
-        author=request.json["author"],
-        synopsis=request.json["synopsis"],
-        available_copies=request.json["available_copies"],
+        title=title,
+        author=author,
+        synopsis=synopsis,
+        available_copies=available_copies,
     )
     db.session.add(new_book)
     db.session.commit()
@@ -52,10 +60,16 @@ def update_book(id):
     book = Book.query.get(id)
     if book is None:
         return jsonify({"error": "book not found"}), 404
-    book.title = request.json.get("title", book.title)
-    book.author = request.json.get("author", book.author)
-    book.stock = request.json.get("stock", book.stock)
-    book.rent_price = request.json.get("rent_price", book.rent_price)
+    book.title = request.json.get("title", book.title) if request.json else book.title
+    book.author = (
+        request.json.get("author", book.author) if request.json else book.author
+    )
+    book.stock = request.json.get("stock", book.stock) if request.json else book.stock
+    book.rent_price = (
+        request.json.get("rent_price", book.rent_price)
+        if request.json
+        else book.rent_price
+    )
     db.session.commit()
     return jsonify(book.serialize()), 200
 

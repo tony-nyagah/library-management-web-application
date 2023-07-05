@@ -1,4 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from "vue";
+import useApi from "../composables/useApi";
+
+const { data, error, loading, load } = useApi("books");
+
+onMounted(async () => {
+    await load()
+    if (error.value) {
+        console.error(error.value)
+    } else {
+        console.log(data.value)
+    }
+})
+</script>
 
 <template>
     <div class="container mx-auto px-5">
