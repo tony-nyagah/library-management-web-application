@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import useApi from "../composables/useApi";
+import { onMounted } from 'vue'
+import useApi from '../composables/useApi'
 
-const { data, error, loading, load } = useApi("books");
+const { data, error, loading, load } = useApi('books')
 
 onMounted(async () => {
     await load()
     if (error.value) {
         console.error(error.value)
-    } else {
-        console.log(data.value)
     }
 })
+
+const book_data = data;
+
 </script>
 
 <template>
@@ -19,23 +20,26 @@ onMounted(async () => {
         <div class="grid grid-cols-10">
             <div class="col-span-10 sm:col-span-8">
                 <h1 class="text-2xl font-bold">Books</h1>
-                <hr class="my-4">
+                <hr class="my-4" />
                 <button type="button" class="btn btn-success btn-sm text-white">Add Book</button>
-                <hr class="my-4">
-                <table class="table-auto w-full">
-                    <thead class="">
+                <hr class="my-4" />
+                <div v-if="loading">
+                    Loading...
+                </div>
+
+                <table class="table text-xl">
+                    <thead class="text-xl">
                         <tr>
                             <th>Title</th>
                             <th>Author</th>
                             <th>Available Copies</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">foo</td>
-                            <td class="text-center">bar</td>
-                            <td class="text-center">20</td>
+                        <tr v-for="book in book_data" :key="book.id">
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.available_copies }}</td>
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-warning btn-sm">Update</button>
@@ -43,6 +47,7 @@ onMounted(async () => {
                                 </div>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
