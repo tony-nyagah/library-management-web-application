@@ -14,6 +14,8 @@ flask-sqlalchemy = "^3.0.4"
 flask-cors = "^3.0.10"
 django = "^4.2.3"
 djangorestframework = "^3.14.0"
+whitenoise = "^6.5.0"
+gunicorn = "^21.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
