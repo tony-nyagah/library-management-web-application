@@ -2,16 +2,17 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from books.models import Book
+from catalog.models import Author, Book
 
 
 class APITests(APITestCase):
     @classmethod
     def setUpTestData(cls):
+        cls.author = Author.objects.create(first_name="Test", last_name="Case")
         cls.book = Book.objects.create(
             title="Django for APIs",
-            synopsis="Learn to use Django to power API creation.",
-            author="William S. Vincent",
+            summary="Learn to use Django to power API creation.",
+            author=cls.author,
             available_copies="2",
         )
 

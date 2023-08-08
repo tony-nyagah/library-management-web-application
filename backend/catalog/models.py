@@ -47,7 +47,7 @@ class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
 
     title = models.CharField(max_length=100)
-    summary = models.CharField(
+    summary = models.TextField(
         max_length=500, help_text="Enter a brief description of the book"
     )
     author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True)
@@ -66,6 +66,8 @@ class Book(models.Model):
     def display_genre(self):
         """Create a string for the genre. This is required to display genre in the Admin"""
         return ", ".join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = "Genre"
 
 
 class BookInstance(models.Model):
