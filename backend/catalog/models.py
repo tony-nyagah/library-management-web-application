@@ -48,7 +48,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=100)
     summary = models.TextField(
-        max_length=500, help_text="Enter a brief description of the book"
+        max_length=1000, help_text="Enter a brief description of the book"
     )
     author = models.ForeignKey(Author, on_delete=models.PROTECT, null=True)
     isbn = models.CharField(
