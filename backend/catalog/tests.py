@@ -1,6 +1,7 @@
-from django.test import TestCase
-
 from catalog.models import Author, Book, Genre, Language
+from django.test import TestCase
+from django.urls import reverse
+from rest_framework import status
 
 
 class BookModelTest(TestCase):
@@ -26,3 +27,17 @@ class BookModelTest(TestCase):
         self.assertEqual(self.test_book.isbn, "123456789")
         self.assertEqual(self.test_book.summary, "This is the summary")
         self.assertEqual(len(self.test_book.genre.all()), 2)
+
+    def test_api_bookview(self):
+        response = self.client.get(reverse("book-list"))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Book.objects.count(), 1)
+        self.assertContains(response, self.test_book)
+
+    def test_api_bookdetail(self):
+        response = self.client.get(
+            reverse("book-detail", kwargs={"pk": self.test_book.id}), format="json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Book.objects.count(), 1)
+        self.assertContains(response, "The Big Book")
