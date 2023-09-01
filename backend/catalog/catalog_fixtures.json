@@ -1,0 +1,55 @@
+[
+  {
+    "model": "catalog.author",
+    "pk": 1,
+    "fields": {
+      "first_name": "Terry",
+      "last_name": "Pratchett",
+      "date_of_birth": "1948-04-28",
+      "date_of_death": "2015-03-12"
+    }
+  },
+  {
+    "model": "catalog.author",
+    "pk": 2,
+    "fields": {
+      "first_name": "William",
+      "last_name": "Vincent",
+      "date_of_birth": null,
+      "date_of_death": null
+    }
+  },
+  { "model": "catalog.genre", "pk": 1, "fields": { "name": "Fantasy" } },
+  {
+    "model": "catalog.genre",
+    "pk": 2,
+    "fields": { "name": "Science Fiction" }
+  },
+  { "model": "catalog.genre", "pk": 3, "fields": { "name": "Non-fiction" } },
+  { "model": "catalog.language", "pk": 1, "fields": { "name": "English" } },
+  { "model": "catalog.language", "pk": 2, "fields": { "name": "Swahili" } },
+  {
+    "model": "catalog.book",
+    "pk": 1,
+    "fields": {
+      "title": "Feet of Clay",
+      "summary": "In Feet of Clay, Terry Pratchett continues the fantasy adventures on Discworld--where anything goes. Anything but murder, that is. Commander Vimes of the Watch must investigate a puzzling series of deaths, with help from various trolls and dwarfs. Pratchett's humor and excellent writing skills draw the reader effortlessly into his zany world. Feet of Clay is 19th in the series.",
+      "author": 1,
+      "isbn": "978-0-552-153",
+      "language": 1,
+      "genre": [1]
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 2,
+    "fields": {
+      "title": "Django for APIs",
+      "summary": "Django for APIs is a project-based guide to building modern web APIs with Django &amp; Django REST Framework. It is suitable for beginners who have never built an API before as well as professional programmers looking for a fast-paced introduction to Django fundamentals and best practices.\r\n\r\nOver the course of 200+ pages you'll learn how to set up a new project properly, how web APIs work under the hood, and advanced testing and deployment techniques. Three separate projects are built from scratch with progressively more advanced features including a Library API, Todo API, and Blog API. User authentication, permissions, documentation, viewsets, and routers are all covered thoroughly.\r\n\r\nDjango for APIs is a best-practices guide to building powerful Python-based web APIs with a minimal amount of code.",
+      "author": 2,
+      "isbn": "9781735467221",
+      "language": 1,
+      "genre": [3]
+    }
+  }
+]
