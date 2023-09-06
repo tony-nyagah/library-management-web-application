@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     # 3rd party apps
-    "rest_framework",
-    "django_extensions",
     "corsheaders",
+    "django_extensions",
+    "rest_framework",
     # local apps
+    # "accounts",
     "catalog",
 ]
 
