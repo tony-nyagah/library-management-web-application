@@ -17,7 +17,8 @@ gunicorn = "^21.2.0"
 pygraphviz = "^1.11"
 pyparsing = "^3.1.0"
 pydot = "^1.4.2"
-
+pytest = "^7.4.1"
+pytest-django = "^4.5.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
@@ -26,7 +27,12 @@ pre-commit = "^3.3.2"
 django-extensions = "^3.2.3"
 
 [tool.ruff]
+exclude = ["vendor/*", "*/migrations/*"]
 line-length = 130
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "library_project.settings"
+python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]
 
 [build-system]
 requires = ["poetry-core"]

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     # local apps
-    # "accounts",
+    "accounts",
     "catalog",
 ]
 
@@ -155,3 +155,5 @@ CORS_ALLOWED_ORIGINS = (
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:5173",
 ]
+
+AUTH_USER_MODEL = "accounts.CustomUser"

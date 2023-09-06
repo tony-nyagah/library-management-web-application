@@ -1,7 +1,7 @@
 from datetime import date
 from uuid import uuid4
 
-from django.contrib.auth.models import User
+from accounts.models import CustomUser as User
 from django.db import models
 
 

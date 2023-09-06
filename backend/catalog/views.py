@@ -1,7 +1,6 @@
+from catalog.models import Author, Book, Genre, Language
+from catalog.serializers import AuthorSerializer, BookSerializer, GenreSerializer
 from rest_framework import generics
-
-from catalog.models import Book, Author, Genre, Language
-from catalog.serializers import BookSerializer, AuthorSerializer, GenreSerializer
 
 
 class AuthorListView(generics.ListAPIView):
